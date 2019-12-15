@@ -1,52 +1,48 @@
-#include <stdio.h>
+#include "header.h"
 
+int validate_input (int inputIndex)
+{
+      printf("\n");
+      return 1;
 /*
-function to convert decimal to binary 
-int decimal - get a number in a decimal base
-return - a void function, just prints the decimal number in binary base
-*/
-void translate_dec_hex(int decimal) 
-{ 
-         
-    int i;
-    int k;
-    
-    /* 
-    Get how many bits there are in an unsigned int.
-    sizeof(unsigned int) returns the number of byte, doubled by 8 (number of memory cells) gives us the number of bits we need to loop throw.
-    -1 is needed because the loop runs till 0.
-    */
-    i = sizeof(unsigned int)*8 -1 ;
-    
-    printf("The number in binary is: ");
-    
-    /* loop throw all the bytes in the memory */
-    for (; i > 0; i--) { 
-        
-        /* Right shift the bits by the number of bits left in memory  */
-        k = decimal >> i; 
-        
-        /* check if the the value of k is 1 */
-        if (k & 1) 
-            printf ("1");             
-        else
-            printf ("0"); 
-    } 
+    int i = 0;
+    while(i < inputIndex)
+    {
 
+        i++;
+    }
+*/
+}
+
+void get_name() 
+{ 
+          
       printf("\n");
 
 } 
 
 int main()
 {
-    unsigned int input;
+    int inputIndex;
+    static char arr[NUMBER_OF_STRINGS][MAX_STRING_SIZE];
 
     /* handle input */
-    printf("\nEnter a number: ");
-    scanf("%u", &input);
+    for(inputIndex = 0; inputIndex < NUMBER_OF_STRINGS; inputIndex++)
+    {
+        printf("\nEnter a number: ");
+        scanf("%s", arr[inputIndex]);
+
+        /*validate_input(inputIndex)*/
+    }
+
+    printf("\nEnter a number: %s", arr[1]);
+    printf("\nEnter a number: %s", arr[1]);
+    
+
+  
 
     /* call translate_dec_hex funcation */
-    translate_dec_hex(input); 
+    get_name(); 
   
     return 0;
 }
