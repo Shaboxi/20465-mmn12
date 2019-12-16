@@ -11,8 +11,6 @@ void copy_string(char *target, char *source)
     *target = '\0';
 }
 
-
-
 int compare (char* str, char* compare)
 {
     int result;
@@ -33,7 +31,6 @@ int compare (char* str, char* compare)
 
 char arr[NUMBER_OF_STRINGS][MAX_STRING_SIZE];
 
-
 int validate_input (int validateIndex )
 {
     int i = 0;
@@ -52,7 +49,9 @@ int validate_input (int validateIndex )
     while(i <= validateIndex)
     {
 
+        /* debug print:
         printf("The array: on index %d you can find the value %s\n", i, arr[i]);
+        */
 
         /* 
         if the name is 2 times in the array - the input is not valid. 
@@ -82,15 +81,22 @@ int validate_input (int validateIndex )
 
 void get_name() 
 { 
-          
-      printf("\n");
+    time_t t;          
+    int random;
+    
+ 
+    /* Intializes random number generator */
+    srand((unsigned) time(&t));
 
+    /* Print 1 random numbers from 0 to NUMBER_OF_STRINGS-1 */
+    random = rand() % (NUMBER_OF_STRINGS-1);
+    printf("\n%s", arr[random]);
 } 
 
 int main()
 {
     int inputIndex;
-    
+    int getNameLooper = 10;
     
 
     /* handle input */
@@ -107,11 +113,15 @@ int main()
              
     }
         
-        
-
-    /* call get_name funcation */
-    get_name(); 
-  
+    printf("\n\nGET NAME:\n");    
+    while(getNameLooper >= 0)
+    {
+        /* call get_name funcation */
+        get_name();
+        sleep(1);
+        getNameLooper--;
+    }
+    printf("\n");    
     return 0;
 }
 
