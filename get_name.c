@@ -11,7 +11,7 @@ void copy_string(char *target, char *source)
     *target = '\0';
 }
 
-char* string_to_lower (char* str)
+void string_to_lower (char* str)
 {
     int i;
 
@@ -20,22 +20,36 @@ char* string_to_lower (char* str)
         str[i] = tolower(str[i]);
     }
     
-    return str;
+    
 }
 
+char arr[NUMBER_OF_STRINGS][MAX_STRING_SIZE];
 
-int validate_input (int validateIndex, char arrayOfString[NUMBER_OF_STRINGS][MAX_STRING_SIZE])
+int validate_input (int validateIndex ) /*, char arrayOfString[NUMBER_OF_STRINGS][MAX_STRING_SIZE])*/
 {
     int i = 0;
-
     
-    /*printf("\nvalidateIndex= %s", arrayOfString[validateIndex]);*/
+    char dummy[MAX_STRING_SIZE];
+    
+
+    /* copy strings, so the real value in the array will be kept */
+    copy_string(dummy, arr[validateIndex]);
+    
+    /* get the name in a lowercase */ 
+    string_to_lower(dummy);
+    
+    
 
     while(i <= validateIndex)
     {
+        printf("\n Compare: String to lower: %s", dummy);
+        printf(", i= %s \n", arr[i]);
 
-        /*printf("\ni= %s", arrayOfString[i]);*/
-
+        /* 
+        if the name is 2 times in the array - the input is not valid. 
+        1 time for its original, 
+        1 time for duplication.
+        */
         i++;
     }
 
@@ -54,9 +68,8 @@ void get_name()
 int main()
 {
     int inputIndex;
-    static char arr[NUMBER_OF_STRINGS][MAX_STRING_SIZE];
-    char dummy[MAX_STRING_SIZE];
-    char* lowerString;
+    
+    
 
     /* handle input */
     for(inputIndex = 0; inputIndex <= NUMBER_OF_STRINGS; inputIndex++)
@@ -70,7 +83,7 @@ int main()
         */
         
         
-        validate_input(inputIndex, arr);
+        validate_input(inputIndex);
         
     }
         printf("\nString Value: %s", arr[inputIndex-1]);
@@ -84,12 +97,9 @@ int main()
         
         */
        
-        /* copy strings, so the real value in the array will be kept */
-        copy_string(dummy, arr[inputIndex-1]);
-        /* get the name in a lowercase */ 
-        lowerString = string_to_lower(dummy);
+
         
-        printf("\nString to lower: %s", lowerString);
+        
         printf("\nString Value: %s", arr[inputIndex-1]);
 
   
