@@ -3,15 +3,15 @@
 char* string_to_lower (char* str)
 {
     int i;
-    char* lower = "";
     
-    lower = strcpy(lower,str);
+    
+    /*lower = strcpy(lower,str);*/
     
     for(i = 0; str[i]; i++){
-        lower[i] = tolower(lower[i]);
+        str[i] = tolower(str[i]);
     }
-
-    return lower;
+    
+    return str;
 }
 
 
@@ -20,12 +20,12 @@ int validate_input (int validateIndex, char arrayOfString[NUMBER_OF_STRINGS][MAX
     int i = 0;
 
     
-    printf("\nvalidateIndex= %s", arrayOfString[validateIndex]);
+    /*printf("\nvalidateIndex= %s", arrayOfString[validateIndex]);*/
 
     while(i <= validateIndex)
     {
 
-        printf("\ni= %s", arrayOfString[i]);
+        /*printf("\ni= %s", arrayOfString[i]);*/
 
         i++;
     }
@@ -46,7 +46,7 @@ int main()
 {
     int inputIndex;
     static char arr[NUMBER_OF_STRINGS][MAX_STRING_SIZE];
-    const char* lowerString;
+    char* lowerString;
 
     /* handle input */
     for(inputIndex = 0; inputIndex <= NUMBER_OF_STRINGS; inputIndex++)
@@ -63,21 +63,21 @@ int main()
         validate_input(inputIndex, arr);
         
     }
-
-        printf("\nlog 2 ");
+        printf("\nString Value: %s", arr[inputIndex-1]);
+        
     
         
         
         
         /*printf("\nString index %d: ", "1");
         
-        lowerString = string_to_lower(arr[inputIndex]);
-        */
-        printf("\nString Value: %s", arr[1]);
-
         
-        /*printf("\nString to lower: %s", lowerString);*/
-    
+        */
+       
+        lowerString = string_to_lower(arr[inputIndex-1]);
+        
+        printf("\nString to lower: %s", lowerString);
+        printf("\nString Value: %s", arr[inputIndex-1]);
 
   
 
