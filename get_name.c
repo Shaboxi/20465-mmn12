@@ -69,11 +69,14 @@ int main()
         
         
         
-        /*printf("\nString index %d: ", "1");*/
+        /*printf("\nString index %d: ", "1");
+        
+        lowerString = string_to_lower(arr[inputIndex]);
+        */
         printf("\nString Value: %s", arr[1]);
 
-        lowerString = string_to_lower(arr[1]);
-        printf("\nString to lower: %s", lowerString);
+        
+        /*printf("\nString to lower: %s", lowerString);*/
     
 
   
