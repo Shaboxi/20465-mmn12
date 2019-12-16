@@ -1,12 +1,21 @@
 #include "header.h"
 
+void copy_string(char *target, char *source)
+{
+    while(*source)
+    {
+        *target = *source;        
+        source++;        
+        target++;
+    }    
+    *target = '\0';
+}
+
 char* string_to_lower (char* str)
 {
     int i;
-    
-    
-    /*lower = strcpy(lower,str);*/
-    
+
+
     for(i = 0; str[i]; i++){
         str[i] = tolower(str[i]);
     }
@@ -46,6 +55,7 @@ int main()
 {
     int inputIndex;
     static char arr[NUMBER_OF_STRINGS][MAX_STRING_SIZE];
+    char dummy[MAX_STRING_SIZE];
     char* lowerString;
 
     /* handle input */
@@ -74,7 +84,10 @@ int main()
         
         */
        
-        lowerString = string_to_lower(arr[inputIndex-1]);
+        /* copy strings, so the real value in the array will be kept */
+        copy_string(dummy, arr[inputIndex-1]);
+        /* get the name in a lowercase */ 
+        lowerString = string_to_lower(dummy);
         
         printf("\nString to lower: %s", lowerString);
         printf("\nString Value: %s", arr[inputIndex-1]);
