@@ -1,60 +1,66 @@
 #include "header.h"
 
+/*
+char *target = a var to copy the data to
+char *source = a string value to copy from
+this function copy data between two char*
+*/
 void copy_string(char *target, char *source)
 {
+    /* as long as there are values in the char* array, run loop */
     while(*source)
     {
         *target = *source;        
         source++;        
         target++;
     }    
+    /* put null in the last cell to close the string */
     *target = '\0';
 }
 
+/*
+char* str = first string to compare
+char* compare = second string to compare
+loop throw all chars of both strings and check if the result of substrating both chars ASCII code is 0.
+if result is 0 then the chars are equle and move to the next char. 
+returns a non-zero value in case of strings not beeing equles.
+*/
 int compare (char* str, char* compare)
 {
     int result;
 
-    while (*str) 
+    while (*str || *compare) 
     {
         result = tolower(*str) - tolower(*compare);
-        if (result) {
+        
+        if (result) {            
             return result;
         } 
         str++;
         compare++;
     } 
-    return 0;
-    
-    
+    return 0;  
 }
 
 char arr[NUMBER_OF_STRINGS][MAX_STRING_SIZE];
 
-int validate_input (int validateIndex )
+/*
+int validateIndex = an index in the array to validate
+this function returns 0 in case of a successful input, and returns 1 in case of invalid input.
+*/
+int validate_input (int validateIndex)
 {
     int i = 0;
     int counter = 0; /* how many times a name is in the array */
-    char dummy[MAX_STRING_SIZE];
-    
+    char dummy[MAX_STRING_SIZE]; /* allocate a dummy var so the data in the original input wont be spoiled */    
 
     /* copy strings, so the real value in the array will be kept */
     copy_string(dummy, arr[validateIndex]);
     
-    /* get the name in a lowercase  
-    string_to_lower(dummy);
-    
-    */
-
     while(i <= validateIndex)
     {
-
-        /* debug print:
-        printf("The array: on index %d you can find the value %s\n", i, arr[i]);
-        */
-
         /* 
-        if the name is 2 times in the array - the input is not valid. 
+        if the name appers 2 times in the array - the input is invalid. 
         1 time for its original, 
         1 time for duplication.
         */
@@ -63,48 +69,45 @@ int validate_input (int validateIndex )
 
         if(counter == 2)
         {
-            printf("\n Compare: String to lower: %s", dummy);
-            printf(", = %s \n", arr[i]);
+            printf("\nCompare: %s = %s\n", dummy, arr[i]);            
             return 1;
         }
-
-
-
 
         i++;
     }
 
-    
-    /*printf("\n %s", stringToCompare);*/
     return 0;
 }
 
+/*
+this void function prints a random name from the array of names. 
+*/
 void get_name() 
 { 
     time_t t;          
     int random;
     
- 
-    /* Intializes random number generator */
+    /* intializes random number generator */
     srand((unsigned) time(&t));
 
-    /* Print 1 random numbers from 0 to NUMBER_OF_STRINGS-1 */
+    /* get 1 random number from 0 to NUMBER_OF_STRINGS-1 */
     random = rand() % (NUMBER_OF_STRINGS-1);
+    /* print the random name */
     printf("\n%s", arr[random]);
 } 
 
 int main()
 {
-    int inputIndex;
-    int getNameLooper = 10;
+    int inputIndex; /* how many inputs are enterd */
+    int getNameLooper = 10; /* how many time to run the get name function */
     
-
     /* handle input */
     for(inputIndex = 0; inputIndex <= NUMBER_OF_STRINGS; inputIndex++)
     {
         printf("\nEnter a NAME: \n");
         scanf("%s", arr[inputIndex]);
 
+        /* check if value is valid */
         if(validate_input(inputIndex) != 0)
         {
             printf("The name %s was already enterd! Exit program. \n" , arr[inputIndex]);
