@@ -80,51 +80,55 @@ int validate_input (int validateIndex)
 }
 
 /*
-this void function prints a random name from the array of names. 
+this function returns a random name from the array of names.
 */
-void get_name() 
+char* get_name() 
 { 
-    time_t t;          
     int random;
+        
+    /* get 1 random number from 0 to NUMBER_OF_STRINGS+1 */
+    random = rand() % (NUMBER_OF_STRINGS+1);
     
-    /* intializes random number generator */
-    srand((unsigned) time(&t));
-
-    /* get 1 random number from 0 to NUMBER_OF_STRINGS-1 */
-    random = rand() % (NUMBER_OF_STRINGS-1);
-    /* print the random name */
-    printf("\n%s", arr[random]);
+    /* return a random name */    
+    return arr[random];
 } 
 
 int main()
 {
     int inputIndex; /* how many inputs are enterd */
     int getNameLooper = 10; /* how many time to run the get name function */
-    
+    time_t t;
+
+    /* intializes random number generator */
+    srand((unsigned) time(&t));
+
     /* handle input */
     for(inputIndex = 0; inputIndex <= NUMBER_OF_STRINGS; inputIndex++)
     {
         printf("\nEnter a NAME: \n");
         scanf("%s", arr[inputIndex]);
-
+        
         /* check if value is valid */
         if(validate_input(inputIndex) != 0)
         {
             printf("The name %s was already enterd! Exit program. \n" , arr[inputIndex]);
             return 0;
         }
-             
+
+        printf("The name %s enterd!\n" , arr[inputIndex]);
+
     }
         
     printf("\n\nGET NAME:\n");    
-    while(getNameLooper >= 0)
+    while(getNameLooper > 0)
     {
-        /* call get_name funcation */
-        get_name();
-        sleep(1);
+        /* call get_name funcation and print the random name */
+        printf("\n%s", get_name());
+
+        /*sleep(1);*/
         getNameLooper--;
     }
-    printf("\n");    
+    printf("\n");
     return 0;
 }
 

@@ -4,6 +4,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-#define NUMBER_OF_STRINGS 6
-#define MAX_STRING_SIZE 21
+#define NUMBER_OF_STRINGS 29
+#define MAX_STRING_SIZE 20
 
